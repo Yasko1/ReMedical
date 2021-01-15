@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Doctor Dashboard</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="/doctor/css/font-face.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="/doctor/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="/doctor/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"
+          media="all">
+    <link href="/doctor/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/doctor/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+
+<div class="page-wrapper">
+    <!-- HEADER MOBILE-->
+    <header class="header-mobile d-block d-lg-none">
+        <div class="header-mobile__bar">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/doctor/index}"><i class="flaticon-pharmacy"></i>MEDICAL</a>
+            </div>
+        </div>
+        <nav class="navbar-mobile">
+            <div class="container-fluid">
+                <ul class="navbar-mobile__list list-unstyled">
+                    <li>
+                        <a th:href="@{/doctor/index}">
+                            <i class="fas fa-table"></i>Appointments</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER MOBILE-->
+
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+            <a class="navbar-brand" th:href="@{/doctor/index}"><i class="flaticon-pharmacy"></i>MEDICAL</a>
+        </div>
+        <div class="menu-sidebar__content js-scrollbar1">
+            <nav class="navbar-sidebar">
+                <ul class="list-unstyled navbar__list">
+
+
+                    <li class="active">
+                        <a th:href="@{/doctor/index}">
+                            <i class="fas fa-table"></i>Appointments</a>
+                    </li>
+
+
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <form class="form-header" action="" method="POST">
+
+                        </form>
+                        <div class="header-button">
+                            <div class="noti-wrap">
+                                <div class="noti__item js-item-menu">
+
+                                </div>
+                                <div class="noti__item js-item-menu">
+
+                                </div>
+                                <div class="noti__item js-item-menu">
+
+                                </div>
+                            </div>
+                            <div class="account-wrap">
+                                <div class="account-item clearfix js-item-menu">
+                                    <div class="image">
+                                        <img src="images/doc.jpg" alt="John Doe"/>
+                                    </div>
+                                    <div class="content">
+                                        <a class="js-acc-btn" href="#"><p th:text="${name}">Test</p></a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown">
+                                        <div class="info clearfix">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="images/doc.jpg" alt="John Doe"/>
+                                                </a>
+                                            </div>
+                                            <div class="content">
+                                                <h5 class="name">
+                                                    <p th:text="${user}">Test</p>
+
+                                                </h5>
+                                                <span class="email">  <p th:text="${email}"/></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="account-dropdown__footer">
+
+
+                                            <form th:action="@{/logout}" method="POST">
+                                                <button type="submit" class="btn btn-successbtn btn-lg btn-success">
+                                                    Logout
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER DESKTOP-->
+
+        <!-- MAIN CONTENT-->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+
+                    <div th:if="${aMessage}"
+                         class="alert alert-danger"
+                         role="alert"
+                         th:text="${aMessage}">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h4>Status of appointment: </h4>
+                                <button>
+                                    <li data-toggle="modal" data-target="#modalStatus"
+                                        th:text="${app.status}"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h4>PATIENT: </h4>
+                                <a th:href="@{'/doctor/patient/'+${app.getPatientCard().getUser().getId()}}" th:text="${app.getPatientCard().getUser().getEmail()}">
+                                <label class="text-black"
+                                       th:text="${app.getPatientCard().getUser().getFullName()}"/>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-black"
+                                       th:text="'time:  ' + ${app.time}"/>
+                                <label class="text-black"
+                                       th:text="'date:  ' + ${app.date}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div th:if="${app.status} eq 'AT THE DOCTOR'">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4>Patient's complaints: </h4>
+                                    <label class="text-black" th:text="${app.complaints}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form th:action="@{'/doctor/appointment/'+${app.id}+'/save-app'}" th:object="${app}"
+                              method="post">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="appointment_desc" class="text-black"><h4>Doctor notes: </h4></label>
+                                        <input type="text" th:field="*{description}" id="appointment_desc"
+                                               th:text="${app.description}"
+                                               class="form-control modal-body" cols="30" rows="10">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row m-t-30">
+                                <div class="col-md-12">
+                                    <label class="text-black"><h4>Treatment: </h4></label>
+                                    <div class="table-responsive m-b-40">
+                                        <table class="table table-borderless table-data3">
+                                            <thead>
+                                            <tr>
+                                                <th>Treatment description</th>
+                                                <th>Medicines</th>
+                                                <th>Therapies</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" th:field="*{treatment.description}"
+                                                           class="form-control modal-body" cols="30" rows="10">
+                                                </td>
+                                                <td>
+                                                    <table th:each="mt : ${app.treatment.medicines}">
+                                                        <tbody>
+                                                        <tr th:text="${mt.name}"></tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <li name="addTreatment"
+                                                        class="btn btn-primary block full-width m-b"
+                                                        data-toggle="modal"
+                                                        data-target="#modalTreatment">+ Add medicines(pills)
+                                                    </li>
+                                                </td>
+                                                <td>
+                                                    <table th:each="th : ${app.treatment.therapies}">
+                                                        <tbody>
+                                                        <tr th:text="${th.name}"><h6 th:text="${th.description}"/></tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <a th:href="@{'/doctor/appointment/'+${app.id}+'/therapy'}">
+                                                        <li name="addTherapy"
+                                                            class="btn btn-primary block full-width m-b">+ Add therapy
+                                                        </li>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- END DATA TABLE-->
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                    class="btn btn-primary block full-width m-b"
+                                    style="background-color: #4ac797">Save appointment
+                            </button>
+                        </form>
+                    </div>
+
+                    <div th:if="${app.status} eq 'CLOSE'">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4>Patient's complaints: </h4>
+                                    <label class="text-black" th:text="${app.complaints}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4>Doctor notes: </h4>
+                                    <label th:text="${app.description}" class="text-black"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <label class="text-black"><h4>Treatment: </h4></label>
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+                                        <tr>
+                                            <th>Treatment description</th>
+                                            <th>Medicines</th>
+                                            <th>Therapies</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr> <!--th:each="tr : ${app.treatment}"-->
+                                            <td th:text="${app.treatment.description}"></td>
+                                            <td>
+                                                <div th:each="mt : ${app.treatment.medicines}">
+                                                    <div th:text="${mt.name}"></div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div th:each="t : ${app.treatment.therapies}">
+                                                    <div th:text="${t.name}"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modalStatus" tabindex="-1" role="dialog" aria-labelledby="modalStatusLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalStatusLabel">Change Status</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{'/doctor/appointment/'+${app.id}+'/changeStatus'}" method="post">
+
+                            <div class="form-group">
+                                <label class="text-black" for="appointment_status">Status</label>
+                                <select name="status">
+                                    <tr th:each="s : ${statuses}">
+                                        <option id="appointment_status" th:object="${status}"
+                                                th:value="${s.getValue()}" th:text="${s.getValue()}"/>
+                                    </tr>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Ok" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalTreatment" tabindex="-1" role="dialog" aria-labelledby="modalTreatmentLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTreatmentLabel">Add medicines</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{'/doctor/appointment/'+${app.id}+'/addmedpills/'}" method="post">
+
+                            <div class="form-group">
+                                <label class="text-black" for="pill_med">Medicines</label>
+                                <select name="medPill">
+                                    <tr th:each="m : ${medicines}">
+                                        <option id="pill_med" th:text="${m.name}"
+                                                th:object="${medPill}" th:value="${m.name}">
+                                        </option>
+                                    </tr>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Ok" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/doctor/vendor/jquery-3.2.1.min.js"></script>
+        <script src="/doctor/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="/doctor/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+        <script src="/doctor/vendor/slick/slick.min.js"></script>
+        <script src="/doctor/vendor/wow/wow.min.js"></script>
+        <script src="/doctor/vendor/animsition/animsition.min.js"></script>
+        <script src="/doctor/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="/doctor/vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="/doctor/vendor/counter-up/jquery.counterup.min.js"></script>
+        <script src="/doctor/vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="/doctor/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="/doctor/vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="/doctor/vendor/select2/select2.min.js"></script>
+        <script src="/doctor/js/main.js"></script>
+
+</body>
+</html>

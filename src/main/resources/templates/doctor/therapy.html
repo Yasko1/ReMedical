@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Therapy</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+    <link th:href="@{reg/css/style.css}" rel="stylesheet"/>
+</head>
+
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div style="width: 500px; height: 625px; margin: auto;">
+        <h4>Add Therapy</h4>
+        <form action="#" th:action="@{'/doctor/appointment/'+${app.id}+'/therapy'}" th:object="${therapy}" method="post"
+              class="m-t">
+
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="text-black" for="th_med">Therapies</label>
+                    <select name="therapy">
+                        <tr th:each="m : ${therapies}">
+                            <option id="th_med" th:text="${m.name}+':  '+${m.description}"
+                                    th:object="${therapy}" th:value="${m.getName()}">
+                            </option>
+                        </tr>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary block full-width m-b">Save Therapy
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

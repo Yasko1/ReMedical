@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Appointment Registration</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+    <link th:href="@{reg/css/style.css}" rel="stylesheet"/>
+</head>
+
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div style="width: 500px; height: 625px; margin: auto;">
+        <h4>Appointment Registration</h4>
+        <form action="#" th:action="@{/user/save-app}" th:object="${app}" method="post" class="m-t">
+
+            <div th:if="${aMessage}"
+                 class="alert alert-danger"
+                 role="alert"
+                 th:text="${aMessage}">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="text-black">Doctor :  <h5 th:text="${app.doctor.getFullName()}"/></label>
+                        <input type="hidden" th:field="*{doctor}" th:value="${app.doctor}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="appointment_date" class="text-black">Date</label>
+                        <input type="date"  th:field="*{date}" required class="form-control" id="appointment_date">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="appointment_time"  class="text-black">Time</label>
+                        <input type="time" id="appointment_time" th:field="*{time}" name="Time" required th:min="${app.doctor.getStart_job_time()}" th:max="${app.doctor.getEnd_job_time()}">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="appointment_message" class="text-black">Complaints</label>
+                <textarea th:field="*{complaints}" id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
+            </div>
+            <button type="submit"
+                    class="btn btn-primary block full-width m-b">Register appointment
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

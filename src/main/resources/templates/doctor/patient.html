@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Doctor Dashboard</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="/doctor/css/font-face.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="/doctor/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="/doctor/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"
+          media="all">
+    <link href="/doctor/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/doctor/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/doctor/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+
+<div class="page-wrapper">
+    <!-- HEADER MOBILE-->
+    <header class="header-mobile d-block d-lg-none">
+        <div class="header-mobile__bar">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/doctor/index}"><i class="flaticon-pharmacy"></i>MEDICAL</a>
+            </div>
+        </div>
+        <nav class="navbar-mobile">
+            <div class="container-fluid">
+                <ul class="navbar-mobile__list list-unstyled">
+                    <li>
+                        <a th:href="@{/doctor/index}">
+                            <i class="fas fa-table"></i>Appointments</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER MOBILE-->
+
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+            <a class="navbar-brand" th:href="@{/doctor/index}"><i class="flaticon-pharmacy"></i>MEDICAL</a>
+        </div>
+        <div class="menu-sidebar__content js-scrollbar1">
+            <nav class="navbar-sidebar">
+                <ul class="list-unstyled navbar__list">
+
+
+                    <li class="active">
+                        <a th:href="@{/doctor/index}">
+                            <i class="fas fa-table"></i>Appointments</a>
+                    </li>
+
+
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <form class="form-header" action="" method="POST">
+
+                        </form>
+                        <div class="header-button">
+                            <div class="noti-wrap">
+                                <div class="noti__item js-item-menu">
+
+                                </div>
+                                <div class="noti__item js-item-menu">
+
+                                </div>
+                                <div class="noti__item js-item-menu">
+
+                                </div>
+                            </div>
+                            <div class="account-wrap">
+                                <div class="account-item clearfix js-item-menu">
+                                    <div class="image">
+                                        <img src="images/doc.jpg" alt="John Doe"/>
+                                    </div>
+                                    <div class="content">
+                                        <a class="js-acc-btn" href="#"><p th:text="${name}">Test</p></a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown">
+                                        <div class="info clearfix">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="images/doc.jpg" alt="John Doe"/>
+                                                </a>
+                                            </div>
+                                            <div class="content">
+                                                <h5 class="name">
+                                                    <p th:text="${user}">Test</p>
+
+                                                </h5>
+                                                <span class="email">  <p th:text="${email}"/></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="account-dropdown__footer">
+
+
+                                            <form th:action="@{/logout}" method="POST">
+                                                <button type="submit" class="btn btn-successbtn btn-lg btn-success">
+                                                    Logout
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER DESKTOP-->
+
+        <!-- MAIN CONTENT-->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <a th:href="@{'/doctor/patient/'+${card.getUser().getId()}+'/add-app'}">
+                                    <li
+                                            class="btn btn-primary block full-width m-b">+ Add future appointment
+                                    </li>
+                                </a>
+                                <br>
+                                <h4>PATIENT: </h4>
+                                <label class="text-black"
+                                       th:text="${card.getUser().getFullName()}"/>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <form th:action="@{'/doctor/patient/'+${card.user.id}}" th:object="${card}" method="post">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="card_bd" class="text-black">
+                                        <h4 th:text="'Birthday: '+${card.birthday}"></h4>
+                                    </label>
+                                    <input type="date" th:field="*{birthday}" id="card_bd"
+                                           class="form-control modal-body" cols="30" rows="10">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="genderEnum" class="text-black">
+                                        <h4 th:text="'Gender: '+${card.genderEnum}"></h4>
+                                    </label>
+                                    <select name="genderEnum">
+                                        <tr th:each="g : ${genders}">
+                                            <option id="genderEnum" th:text="${g}"
+                                                    th:field="*{genderEnum}" th:value="${g}">
+                                            </option>
+                                        </tr>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="card_h" class="text-black">
+                                        <h4 th:text="'Height: '+ ${card.height}+' sm'"></h4>
+                                    </label>
+                                    <input type="number" th:field="*{height}" id="card_h"
+                                           class="form-control modal-body" cols="30" rows="10">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="card_w" class="text-black">
+                                        <h4 th:text="'Weight: ' + ${card.weight}+' kg'"></h4></label>
+                                    <input type="number" th:field="*{weight}" id="card_w"
+                                           class="form-control modal-body" cols="30" rows="10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary block full-width m-b"
+                                style="background-color: #4ac797">Rewrite
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/doctor/vendor/jquery-3.2.1.min.js"></script>
+    <script src="/doctor/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/doctor/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="/doctor/vendor/slick/slick.min.js"></script>
+    <script src="/doctor/vendor/wow/wow.min.js"></script>
+    <script src="/doctor/vendor/animsition/animsition.min.js"></script>
+    <script src="/doctor/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="/doctor/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="/doctor/vendor/counter-up/jquery.counterup.min.js"></script>
+    <script src="/doctor/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="/doctor/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/doctor/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="/doctor/vendor/select2/select2.min.js"></script>
+    <script src="/doctor/js/main.js"></script>
+
+</body>
+</html>
